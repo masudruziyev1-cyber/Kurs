@@ -3,100 +3,117 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0c0e0d">
+<meta name="theme-color" content="#0d1524">
+<meta name="color-scheme" content="dark">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Kurs</title>
 <style>
-:root{--bg:#0c0e0d;--row:#1a1d1c;--key:#262a29;--fn:#a4adaa;--ac:#d9a441;--tx:#f2f4f3;--mut:#7d8683}
+:root{--bg:#0d1524;--s1:#152238;--s2:#1c2d48;--s3:#2a3e5f;--ln:#26395a;--tx:#eef1f6;--mut:#8b99b3;--gold:#e8b765;--tq:#3fc7b8;--act:#123a46}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-body{display:flex;flex-direction:column;height:100dvh;max-width:520px;margin:0 auto;padding:env(safe-area-inset-top) 12px calc(env(safe-area-inset-bottom) + 10px)}
-header{display:flex;align-items:center;gap:8px;padding:10px 2px}
-.ttl{flex:1;min-width:0}
-.ttl b{font-size:20px}
-#st{font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#st.err{color:#e0836b}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overscroll-behavior:none}
+body{display:flex;flex-direction:column;height:100dvh;max-width:520px;margin:0 auto;padding:env(safe-area-inset-top) 12px calc(env(safe-area-inset-bottom) + 10px);-webkit-user-select:none;user-select:none}
 button{font:inherit;color:inherit;border:0;cursor:pointer}
-.ib{background:var(--row);border-radius:12px;height:40px;padding:0 12px;font-size:18px}
-#src{font-size:13px;font-weight:600;color:var(--ac)}
-.row{display:flex;gap:8px;margin-bottom:8px;height:56px}
-.code{width:92px;background:var(--row);border-radius:16px;display:flex;align-items:center;gap:8px;padding:0 12px;font-weight:700;font-size:15px}
-.code i{font-style:normal;font-size:20px}
-.val{flex:1;min-width:0;background:var(--row);border-radius:16px;display:flex;align-items:center;justify-content:flex-end;padding:0 16px;font-size:26px;white-space:nowrap;overflow-x:auto;font-variant-numeric:tabular-nums;cursor:pointer}
-.row.on .val{background:#352c19;color:var(--ac)}
-#rows{flex:1;min-height:0;overflow-y:auto}
-#pad{flex:0 0 42dvh;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(5,1fr);gap:8px;margin-top:4px}
-#pad button{background:var(--key);border-radius:999px;font-size:26px}
-#pad .f{background:var(--fn);color:#111}
-#pad .o{background:var(--ac);color:#111;font-size:30px}
+header{padding:12px 2px 10px}
+.top{display:flex;align-items:center;gap:8px}
+.ttl{font-size:24px;font-weight:700;letter-spacing:.2px;flex:1}
+.seg{display:flex;background:var(--s1);border-radius:14px;padding:3px}
+.seg button{background:none;padding:8px 14px;border-radius:11px;font-size:14px;font-weight:600;color:var(--mut)}
+.seg button.on{background:var(--s3);color:var(--gold)}
+.ib{background:var(--s1);border-radius:14px;width:42px;height:42px;font-size:19px;color:var(--mut)}
+#st{margin-top:6px;font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#st.err{color:#ee8f78}
+#rows{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px}
+.row{flex:1;min-height:0;max-height:78px;display:flex;gap:8px;transition:transform .15s}
+.row.drag{transition:none;z-index:3;position:relative}
+.row.drag .code,.row.drag .val{box-shadow:0 10px 28px rgba(0,0,0,.55);background:var(--s2)}
+.code{width:44%;background:var(--s1);border-radius:18px;display:flex;align-items:center;gap:10px;padding:0 12px;touch-action:none;cursor:pointer;min-width:0}
+.code i{font-style:normal;font-size:28px;line-height:1}
+.cn{min-width:0;display:flex;flex-direction:column;gap:2px}
+.cn b{font-size:17px;letter-spacing:.3px}
+.cn small{font-size:11px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.val{flex:1;min-width:0;background:var(--s1);border-radius:18px;display:flex;padding:0 16px;overflow-x:auto;scrollbar-width:none;font-size:27px;font-weight:500;font-variant-numeric:tabular-nums;cursor:pointer;align-items:center}
+.val::-webkit-scrollbar{display:none}
+.val span{margin-left:auto;white-space:nowrap}
+.row.on .val{background:var(--act);box-shadow:inset 0 0 0 1.5px var(--tq);color:#fff}
+.row.on .code{box-shadow:inset 3px 0 0 var(--tq)}
+.val.two{flex-direction:column;justify-content:center;align-items:stretch;gap:3px;padding:0 14px}
+.ln{display:flex;justify-content:space-between;align-items:baseline;gap:8px;white-space:nowrap}
+.ln small{font-size:11px;color:var(--mut)}
+.ln b{font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
+#hint{font-size:11px;color:var(--mut);text-align:center;margin:8px 0 4px;opacity:.8}
+#pad{flex:0 0 40dvh;min-height:290px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(5,1fr);gap:8px}
+#pad button{background:var(--s2);border-radius:22px;font-size:26px;font-weight:500}
+#pad .f{background:var(--s3);color:#dfe6f2}
+#pad .o{background:#2e2a22;color:var(--gold);font-size:30px}
+#pad .e{background:var(--gold);color:#1b1405}
 #pad .z{grid-column:span 2}
-#pad button:active{filter:brightness(1.35)}
-.sheet{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:5}
+#pad button:active{filter:brightness(1.4)}
+.sheet{position:fixed;inset:0;background:rgba(3,7,14,.66);display:none;align-items:flex-end;justify-content:center;z-index:5}
 .sheet.open{display:flex}
-.pn{background:#151817;width:100%;max-width:520px;max-height:88dvh;overflow:auto;border-radius:22px 22px 0 0;padding:18px 16px calc(env(safe-area-inset-bottom) + 18px)}
-.pn h2{margin:0 0 4px;font-size:18px}
-.pn p{margin:0 0 14px;font-size:13px;color:var(--mut);line-height:1.4}
-.g{display:grid;grid-template-columns:56px 1fr 1fr;gap:8px;align-items:center;margin-bottom:8px}
-.g span{font-weight:700}
-.g small{grid-column:2/4;color:var(--mut);font-size:12px;margin-top:-4px}
-.g input{width:100%;background:var(--row);border:1px solid #2c3130;border-radius:12px;color:var(--tx);font-size:17px;padding:10px;font-variant-numeric:tabular-nums}
-.h{display:grid;grid-template-columns:56px 1fr 1fr;gap:8px;font-size:12px;color:var(--mut);margin-bottom:6px}
-.pi{display:flex;align-items:center;gap:10px;padding:11px 8px;border-radius:12px;cursor:pointer}
-.pi.sel{background:#352c19}
-.pi i{font-style:normal;font-size:22px}
-.pi b{width:44px}
+.pn{background:#111b2e;width:100%;max-width:520px;max-height:88dvh;overflow:auto;border-radius:26px 26px 0 0;padding:20px 16px calc(env(safe-area-inset-bottom) + 18px);-webkit-user-select:text;user-select:text}
+.pn h2{margin:0 0 6px;font-size:19px}
+.pn p{margin:0 0 14px;font-size:13px;color:var(--mut);line-height:1.5}
+.pn p b{color:var(--tx);font-weight:600}
+.h,.g{display:grid;grid-template-columns:54px 1fr 1fr;gap:8px;align-items:center}
+.h{font-size:12px;color:var(--mut);margin-bottom:6px}
+.g{margin-bottom:8px}.g span{font-weight:700}
+.g input,#q{width:100%;background:var(--s1);border:1px solid var(--ln);border-radius:14px;color:var(--tx);font-size:17px;padding:12px;font-variant-numeric:tabular-nums}
+#q{margin-bottom:8px}
+.pi{display:flex;align-items:center;gap:10px;padding:11px 8px;border-radius:14px;cursor:pointer}
+.pi.sel{background:var(--act)}
+.pi i{font-style:normal;font-size:24px}
+.pi b{width:46px}
 .pi span{flex:1;font-size:13px;color:var(--mut);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pi em{font-style:normal;color:var(--ac);font-weight:700;width:18px;text-align:right}
-#q{width:100%;background:var(--row);border:1px solid #2c3130;border-radius:12px;color:var(--tx);font-size:17px;padding:11px;margin-bottom:8px}
-.done{width:100%;background:var(--ac);color:#111;font-weight:700;border-radius:14px;padding:14px;margin-top:10px;font-size:16px}
+.pi em{font-style:normal;color:var(--tq);font-size:12px;font-weight:600;text-align:right}
+.done{width:100%;background:var(--gold);color:#1b1405;font-weight:700;border-radius:16px;padding:15px;margin-top:10px;font-size:16px}
 </style>
 </head>
 <body>
 <header>
-  <div class="ttl"><b>Kurs</b><div id="st">…</div></div>
-  <button class="ib" id="ad" title="Valyuta qo'shish">＋</button>
-  <button class="ib" id="src" title="Manba"></button>
-  <button class="ib" id="rf" title="Yangilash">↻</button>
-  <button class="ib" id="cf" title="Ipak Yo'li kurslari">⚙</button>
+  <div class="top">
+    <div class="ttl">Kurs</div>
+    <div class="seg" id="seg"><button data-s="cbu">MB</button><button data-s="ipak">Ipak</button></div>
+    <button class="ib" id="rf" title="Yangilash">↻</button>
+    <button class="ib" id="cf" title="Ipak Yo'li kurslari">⚙</button>
+  </div>
+  <div id="st"></div>
 </header>
-<div id="rows"></div>
+<main id="rows"></main>
+<div id="hint">Valyutani bosing — almashtirish · uzoq bosib suring — tartiblash</div>
 <div id="pad"></div>
 
 <div id="pick" class="sheet"><div class="pn">
-  <h2>Valyutalarni tanlang</h2>
-  <p>Bosing — ro'yxatga qo'shiladi yoki olib tashlanadi.</p>
+  <h2>Valyutani almashtirish</h2>
+  <p>Tanlang — shu qatordagi valyuta almashadi. Tanlaganingiz ro'yxatda bo'lsa, ikki qator o'rin almashadi.</p>
   <input id="q" type="search" placeholder="Qidirish: USD, yuan, lira…" autocomplete="off">
   <div id="pl"></div>
-  <button class="done" id="pk">Tayyor</button>
+  <button class="done" id="pk">Yopish</button>
 </div></div>
+
 <div id="sheet" class="sheet"><div class="pn">
   <h2>Ipak Yo'li kurslari</h2>
-  <p>Bankdagi kursni shu yerga qo'lda kiriting. Kiritilmagan valyutada Markaziy bank kursi ishlatiladi. "Bank oladi" — siz valyutani so'mga sotganda, "Bank sotadi" — so'mga valyuta sotib olganda.</p>
+  <p>Bankdagi kursni qo'lda kiriting: <b>1 birlik valyuta necha so'm</b>. Summani emas, narxni yozing.<br><b>Bank oladi</b> — valyutangizni bankka sotsangiz beradigan so'm (past kurs).<br><b>Bank sotadi</b> — bankdan valyuta olsangiz to'laydigan so'm (yuqori kurs).<br>Kiritilmasa, Markaziy bank kursi ishlatiladi. Natijani ko'rish uchun yuqorida <b>Ipak</b> ni tanlang.</p>
   <div class="h"><span></span><span>Bank oladi</span><span>Bank sotadi</span></div>
   <div id="bk"></div>
   <button class="done" id="ok">Tayyor</button>
 </div></div>
 
 <script>
-const FALL=['USD','EUR','RUB','CNY','KZT','TRY','GBP','JPY','KRW','CHF','CAD','INR','AED','PLN','SEK','AUD','KGS','TJS'];
+const POP=['UZS','USD','EUR','RUB','CNY','TRY','KZT','GBP','JPY','KRW','CHF','CAD','INR','AED','PLN','SEK','AUD','KGS','TJS'];
 const $=s=>document.querySelector(s);
 const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
 const sv=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let src=ld('src','cbu'), cbu=ld('cbu2',{}), bank=ld('bank',{}), list=ld('list',['UZS','USD','CNY','RUB','KZT']);
-if(list[0]!=='UZS')list=['UZS',...list.filter(c=>c!=='UZS')];
-let active='UZS', expr='0', fresh=false, msg='', bad=false;
+let src=ld('src','cbu'), cbu=ld('cbu2',{}), bank=ld('bank',{}), list=ld('list5',['UZS','USD','CNY','RUB','TRY']);
+if(!Array.isArray(list)||list.length!==5)list=['UZS','USD','CNY','RUB','TRY'];
+let active=list[0]==='UZS'?'UZS':list[0], expr='0', fresh=false, msg='', bad=false;
 
 const flag=c=>/^[A-Z]{2}/.test(c)&&c[0]!=='X'?String.fromCodePoint(...[...c.slice(0,2)].map(ch=>127397+ch.charCodeAt(0))):'🌐';
 const nm=c=>c==='UZS'?"O'zbek so'mi":((cbu.n&&cbu.n[c])||'');
-const rate=(c,side)=>{
-  if(c==='UZS')return 1;
-  const b=bank[c];
-  if(src==='ipak'&&b&&b[side]>0)return b[side];
-  return cbu.r&&cbu.r[c];
-};
+const hasBank=(c,side)=>src==='ipak'&&c!=='UZS'&&bank[c]&&bank[c][side]>0;
+const rate=(c,side)=>c==='UZS'?1:(hasBank(c,side)?bank[c][side]:(cbu.r&&cbu.r[c]));
 function conv(v,from,to){
   if(from===to)return v;
   const uzs=from==='UZS'?v:v*rate(from,'b');
@@ -108,20 +125,71 @@ const showExpr=e=>e.replace(/\d+(\.\d*)?/g,grp).replace(/\*/g,'×').replace(/\//
 function val(){const e=expr.replace(/[+\-*/.]+$/,'');if(!e)return 0;try{return Function('"use strict";return ('+e+')')()}catch{return 0}}
 
 function render(){
-  const v=val(), box=$('#rows'), sc=box.scrollTop;
-  box.innerHTML=list.map(c=>{
-    const t=c===active?showExpr(expr):fmt(conv(v,active,c));
-    return `<div class="row${c===active?' on':''}" data-c="${c}" title="${esc(nm(c))}"><div class="code"><i>${flag(c)}</i>${c}</div><div class="val">${t}</div></div>`;
+  const v=val();
+  $('#rows').innerHTML=list.map(c=>{
+    const on=c===active;
+    let inner;
+    if(!on&&c==='UZS'&&src==='ipak'&&active!=='UZS'){
+      inner=`<div class="val two"><div class="ln"><small>bankka sotsangiz</small><b>${fmt(v*rate(active,'b'))}</b></div><div class="ln"><small>bankdan olsangiz</small><b>${fmt(v*rate(active,'s'))}</b></div></div>`;
+    }else{
+      inner=`<div class="val"><span>${on?showExpr(expr):fmt(conv(v,active,c))}</span></div>`;
+    }
+    const tag=src==='ipak'&&c!=='UZS'&&!hasBank(c,'b')&&!hasBank(c,'s')?' · MB kursi':'';
+    return `<div class="row${on?' on':''}" data-c="${c}"><div class="code"><i>${flag(c)}</i><div class="cn"><b>${c}</b><small>${esc(nm(c))}${tag}</small></div></div>${inner}</div>`;
   }).join('');
-  box.scrollTop=sc;
-  $('#src').textContent=src==='cbu'?'MB':'Ipak';
-  const s=$('#st');s.className=bad?'err':'';s.textContent=msg;
+  for(const b of document.querySelectorAll('#seg button'))b.classList.toggle('on',b.dataset.s===src);
+  const s=$('#st');s.className=bad?'err':'';
+  s.textContent=(src==='ipak'&&!bad?"Ipak Yo'li (qo'lda) · MB: ":'')+msg;
 }
-$('#rows').addEventListener('click',e=>{
-  const r=e.target.closest('.row');if(!r||r.dataset.c===active)return;
+
+const rowsEl=$('#rows');
+let drag=null, noClick=false;
+rowsEl.addEventListener('contextmenu',e=>e.preventDefault());
+rowsEl.addEventListener('click',e=>{
+  if(noClick){noClick=false;return}
+  const r=e.target.closest('.row');if(!r)return;
+  if(e.target.closest('.code')){openPick(list.indexOf(r.dataset.c));return}
+  if(r.dataset.c===active)return;
   const n=conv(val(),active,r.dataset.c);
   active=r.dataset.c;expr=isFinite(n)?String(Math.round(n*100)/100):'0';fresh=true;render();
 });
+rowsEl.addEventListener('pointerdown',e=>{
+  noClick=false;
+  const chip=e.target.closest('.code');if(!chip)return;
+  const row=chip.parentElement;
+  const d={i:list.indexOf(row.dataset.c),row,y0:e.clientY,on:false,t:0};
+  d.t=d.i;
+  d.timer=setTimeout(()=>{
+    d.on=true;noClick=true;
+    d.els=[...rowsEl.children];d.rects=d.els.map(x=>x.getBoundingClientRect());
+    row.classList.add('drag');
+    if(navigator.vibrate)navigator.vibrate(15);
+  },350);
+  drag=d;
+});
+window.addEventListener('pointermove',e=>{
+  const d=drag;if(!d)return;
+  if(!d.on){if(Math.abs(e.clientY-d.y0)>10){clearTimeout(d.timer);drag=null}return}
+  const dy=e.clientY-d.y0,h=d.rects[0].height,stride=d.rects[1].top-d.rects[0].top;
+  d.row.style.transform=`translateY(${dy}px)`;
+  let t=Math.round((d.rects[d.i].top+dy-d.rects[0].top)/stride);
+  t=Math.max(0,Math.min(list.length-1,t));d.t=t;
+  d.els.forEach((el,j)=>{
+    if(j===d.i)return;
+    let s=0;if(d.i<j&&j<=t)s=-stride;else if(t<=j&&j<d.i)s=stride;
+    el.style.transform=s?`translateY(${s}px)`:'';
+  });
+});
+function endDrag(){
+  const d=drag;if(!d)return;
+  clearTimeout(d.timer);drag=null;
+  if(d.on){
+    if(d.t!==d.i){const[c]=list.splice(d.i,1);list.splice(d.t,0,c);sv('list5',list)}
+    render();
+  }
+}
+window.addEventListener('pointerup',endDrag);
+window.addEventListener('pointercancel',endDrag);
 
 const isOp=c=>'+-*/'.includes(c);
 function press(k){
@@ -134,8 +202,7 @@ function press(k){
   else if(k==='.'){
     if(fresh){expr='0.';fresh=false}
     else{const seg=expr.split(/[+\-*/]/).pop();if(!seg.includes('.'))expr+=seg===''?'0.':'.'}
-  }
-  else{
+  }else{
     if(fresh){expr=k;fresh=false}
     else if(expr==='0')expr=k;
     else if(/[+\-*/]0$/.test(expr))expr=expr.slice(0,-1)+k;
@@ -143,7 +210,7 @@ function press(k){
   }
   render();
 }
-const KEYS=[['C','f'],['⌫','f'],['%','f'],['÷','o','/'],['7'],['8'],['9'],['×','o','*'],['4'],['5'],['6'],['−','o','-'],['1'],['2'],['3'],['+','o'],['0','z'],['.'],['=','o']];
+const KEYS=[['C','f'],['⌫','f'],['%','f'],['÷','o','/'],['7'],['8'],['9'],['×','o','*'],['4'],['5'],['6'],['−','o','-'],['1'],['2'],['3'],['+','o'],['0','z'],['.'],['=','e']];
 $('#pad').innerHTML=KEYS.map(([t,c='',k])=>`<button class="${c}" data-k="${k||t}">${t}</button>`).join('');
 $('#pad').addEventListener('click',e=>{const b=e.target.closest('button');if(b)press(b.dataset.k)});
 
@@ -168,37 +235,47 @@ async function load(){
   render();
 }
 $('#rf').onclick=load;
-$('#src').onclick=()=>{src=src==='cbu'?'ipak':'cbu';sv('src',src);render()};
+$('#seg').onclick=e=>{const b=e.target.closest('button');if(!b)return;src=b.dataset.s;sv('src',src);render()};
 
-/* valyuta tanlash */
+/* valyutani almashtirish */
+let slot=0;
 function drawPick(){
   const q=$('#q').value.trim().toLowerCase();
-  const codes=cbu.r&&Object.keys(cbu.r).length?Object.keys(cbu.r):FALL;
-  const items=codes.filter(c=>c!=='UZS'&&(!q||c.toLowerCase().includes(q)||nm(c).toLowerCase().includes(q))).sort();
-  $('#pl').innerHTML=items.map(c=>{const on=list.includes(c);
-    return `<div class="pi${on?' sel':''}" data-c="${c}"><i>${flag(c)}</i><b>${c}</b><span>${esc(nm(c))}</span><em>${on?'✓':''}</em></div>`}).join('')||'<p>Topilmadi</p>';
+  let codes=cbu.r&&Object.keys(cbu.r).length?Object.keys(cbu.r):POP.slice();
+  if(!codes.includes('UZS'))codes.push('UZS');
+  codes=codes.filter(c=>!q||c.toLowerCase().includes(q)||nm(c).toLowerCase().includes(q));
+  const rk=c=>{const i=POP.indexOf(c);return i<0?999:i};
+  codes.sort((a,b)=>q?a.localeCompare(b):(rk(a)-rk(b)||a.localeCompare(b)));
+  $('#pl').innerHTML=codes.map(c=>{
+    const cur=c===list[slot],on=list.includes(c);
+    return `<div class="pi${cur?' sel':''}" data-c="${c}"><i>${flag(c)}</i><b>${c}</b><span>${esc(nm(c))}</span><em>${cur?'joriy':on?'ro\'yxatda':''}</em></div>`;
+  }).join('')||'<p>Topilmadi</p>';
 }
-$('#ad').onclick=()=>{$('#q').value='';drawPick();$('#pick').classList.add('open')};
+function openPick(k){slot=k;$('#q').value='';drawPick();$('#pick').classList.add('open')}
 $('#q').oninput=drawPick;
 $('#pl').addEventListener('click',e=>{
   const it=e.target.closest('.pi');if(!it)return;
-  const c=it.dataset.c;
-  if(list.includes(c)){list=list.filter(x=>x!==c);if(active===c){active='UZS';expr='0';fresh=false}}
-  else list.push(c);
-  sv('list',list);drawPick();render();
+  const c=it.dataset.c,old=list[slot];
+  if(c!==old){
+    const j=list.indexOf(c);if(j>=0)list[j]=old;
+    list[slot]=c;sv('list5',list);
+    if(!list.includes(active)){active=c;expr='0';fresh=false}
+  }
+  $('#pick').classList.remove('open');render();
 });
 $('#pk').onclick=()=>$('#pick').classList.remove('open');
 
 /* Ipak Yo'li kurslari */
 function buildBank(){
   $('#bk').innerHTML=list.filter(c=>c!=='UZS').map(c=>{
-    const b=bank[c]||{};
-    return `<div class="g"><span>${c}</span><input data-c="${c}" data-s="b" type="number" inputmode="decimal" step="any" value="${b.b||''}"><input data-c="${c}" data-s="s" type="number" inputmode="decimal" step="any" value="${b.s||''}"></div>`;
+    const b=bank[c]||{},ph=cbu.r&&cbu.r[c]?Math.round(cbu.r[c]*100)/100:'';
+    const inp=s=>`<input data-c="${c}" data-s="${s}" type="text" inputmode="decimal" placeholder="${ph}" value="${b[s]||''}">`;
+    return `<div class="g"><span>${c}</span>${inp('b')}${inp('s')}</div>`;
   }).join('');
 }
 $('#bk').addEventListener('input',e=>{
   const i=e.target,c=i.dataset.c;if(!c)return;
-  bank[c]=bank[c]||{};bank[c][i.dataset.s]=parseFloat(i.value)||0;
+  bank[c]=bank[c]||{};bank[c][i.dataset.s]=parseFloat(i.value.replace(/\s/g,'').replace(',','.'))||0;
   sv('bank',bank);render();
 });
 $('#cf').onclick=()=>{buildBank();$('#sheet').classList.add('open')};

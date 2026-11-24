@@ -1,4 +1,4 @@
-const V='kurs-v2',A=['./','index.html','manifest.webmanifest','icon-192.png'];
+const V='kurs-v3',A=['./','index.html','manifest.webmanifest','icon-192.png'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(V).then(c=>c.addAll(A)))});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x))))));
 self.addEventListener('fetch',e=>{
