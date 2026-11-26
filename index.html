@@ -6,8 +6,8 @@
 <meta name="theme-color" content="#1f1e1c">
 <meta name="color-scheme" content="dark">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon-192.png">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="logo-192.png">
+<link rel="apple-touch-icon" href="logo-192.png">
 <title>Kurs</title>
 <style>
 :root{--bg:#1f1e1c;--panel:#292723;--s1:#34312c;--s2:#3f3b35;--s3:#4d483f;--ln:#3b372f;--tx:#f4eee3;--mut:#a89f91;--or:#d97757;--or2:#f0a98a;--act:#3d2c23}
@@ -19,7 +19,7 @@ button{font:inherit;color:inherit;border:0;cursor:pointer}
 header{padding:12px 2px 10px}
 .top{display:flex;align-items:center;gap:8px}
 .brand{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
-.brand svg{width:30px;height:30px;flex:none}
+.brand svg{width:34px;height:34px;flex:none}
 .ttl{font-size:22px;font-weight:700;letter-spacing:.2px}
 .seg{display:flex;background:var(--panel);border:1px solid var(--ln);border-radius:14px;padding:3px}
 .seg button{background:none;padding:7px 12px;border-radius:11px;font-size:14px;font-weight:600;color:var(--mut)}
@@ -52,7 +52,7 @@ header{padding:12px 2px 10px}
 #pad{flex:0 0 38dvh;min-height:270px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(5,1fr);gap:8px}
 #pad button{background:var(--s2);border-radius:22px;font-size:26px;font-weight:500}
 #pad .f{background:var(--s3);color:#efe6d6}
-#pad .o{background:#4a2f24;color:var(--or2);font-size:30px}
+#pad .o{background:#4a2f24;color:var(--or2);font-size:38px;font-weight:400}
 #pad .e{background:var(--or);color:#231610}
 #pad .z{grid-column:span 2}
 #pad button:active{filter:brightness(1.3)}
@@ -82,13 +82,15 @@ details>div{padding-bottom:14px}
 .pi span{flex:1;font-size:13px;color:var(--mut);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pi em{font-style:normal;color:var(--or2);font-size:12px;font-weight:600;text-align:right}
 .done{width:100%;background:var(--or);color:#231610;font-weight:700;border-radius:16px;padding:15px;margin-top:6px;font-size:16px}
+.g b{font-variant-numeric:tabular-nums;font-weight:600;font-size:15px}
+#chs{margin-bottom:12px}
 </style>
 </head>
 <body>
 <header>
   <div class="top">
     <div class="brand">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="14" width="36" height="36" rx="3" fill="#d97757"/><rect x="14" y="14" width="36" height="36" rx="3" fill="#f0a98a" transform="rotate(45 32 32)"/><polygon points="50,39.5 39.5,50 24.5,50 14,39.5 14,24.5 24.5,14 39.5,14 50,24.5" fill="#1f1e1c"/><path d="M23 27h17m-4-4 4 4-4 4M41 38H24m4-4-4 4 4 4" fill="none" stroke="#f4eee3" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#2b2723"/><g fill="none" stroke-linecap="round"><g stroke="#d97757" stroke-width="7.2"><path id="rl" d="M50 35.5Q52 22.3 61 9"/><use href="#rl" transform="rotate(90 50 50)"/><use href="#rl" transform="rotate(180 50 50)"/><use href="#rl" transform="rotate(270 50 50)"/></g><g stroke="#f0a98a" stroke-width="6.2"><path id="rs" d="M50 35.5Q52 26.8 59 18" transform="rotate(45 50 50)"/><use href="#rs" transform="rotate(90 50 50)"/><use href="#rs" transform="rotate(180 50 50)"/><use href="#rs" transform="rotate(270 50 50)"/></g><circle cx="50" cy="50" r="9.5" stroke="#f4eee3" stroke-width="2.2"/></g><circle cx="50" cy="50" r="3.4" fill="#d97757"/></svg>
       <div class="ttl">Kurs</div>
     </div>
     <div class="seg" id="seg"><button data-s="cbu">MB</button><button data-s="ipak">Ipak</button></div>
@@ -114,7 +116,10 @@ details>div{padding-bottom:14px}
   <details id="d1">
     <summary><svg class="ic" viewBox="0 0 24 24"><path d="M4 20l4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20z"/><path d="M13.5 7.5l3 3"/></svg>Ipak Yo'li kurslari</summary>
     <div>
-      <p>Ipak Yo'li kursni ochiq bermaydi, shuning uchun uni qo'lda yozasiz. Bank saytidagi <b>Buy</b> (bank oladi) va <b>Sell</b> (bank sotadi) raqamlarini ko'chiring. Summani emas, <b>1 birlik necha so'm</b>ligini yozing. Bank faqat USD, EUR, RUB almashtiradi. Bo'sh qoldirilsa, Markaziy bank kursi ishlatiladi.</p>
+      <div class="seg" id="chs"></div>
+      <div id="ar"></div>
+      <div id="at" class="warn" style="color:var(--mut);margin:4px 0 14px"></div>
+      <p><b>Qo'lda kiritish (zaxira).</b> Faqat avtomatik kurs kelmagan valyuta uchun ishlatiladi. Bo'sh qoldirilsa, Markaziy bank kursi olinadi. <b>1 birlik necha so'm</b>ligini yozing.</p>
       <div class="h"><span></span><span>Bank oladi</span><span>Bank sotadi</span></div>
       <div id="bk"></div>
       <div id="bt" class="warn" style="color:var(--mut);margin-top:4px"></div>
@@ -131,7 +136,7 @@ details>div{padding-bottom:14px}
     <summary><svg class="ic" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg>Qo'llanma va manbalar</summary>
     <div>
       <p><b>Almashtirish:</b> valyuta nomini bosing.<br><b>Tartiblash:</b> valyuta nomini uzoq bosib, yuqoriga yoki pastga suring.<br><b>Yangilash:</b> yuqoridagi bo'sh joyni pastga tortib qo'yib yuboring. Ilova o'zi ham har 5 daqiqada yangilaydi.</p>
-      <p><b>MB</b> — O'zbekiston Markaziy bankining rasmiy kursi (cbu.uz), barcha valyutalar. U kuniga bir marta belgilanadi.<br><b>Ipak</b> — bankdagi oladi/sotadi kursi, qo'lda kiritiladi.<br>Natijalar taxminiy: bank, karta yoki marketplace o'z kursi va komissiyasini qo'llaydi.</p>
+      <p><b>MB</b> — O'zbekiston Markaziy bankining rasmiy kursi (cbu.uz), barcha valyutalar. U kuniga bir marta belgilanadi.<br><b>Ipak</b> — Ipak Yo'li bankining oladi/sotadi kursi (ipakyulibank.uz, taxminan 30 daqiqada bir yangilanadi). Bank faqat USD, EUR, RUB ni naqd almashtiradi; GBP, CHF, JPY faqat naqdsiz.<br>Natijalar taxminiy: bank, karta yoki marketplace o'z kursi va komissiyasini qo'llaydi.</p>
     </div>
   </details>
   <button class="done" id="ok">Yopish</button>
@@ -144,15 +149,17 @@ const $=s=>document.querySelector(s);
 const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
 const sv=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let src=ld('src','cbu'), cbu=ld('cbu2',{}), bank=ld('bank',{}), list=ld('list5',['UZS','USD','CNY','RUB','TRY']), bankT=ld('bankT',0), markup=ld('markup',0);
+let src=ld('src','cbu'), cbu=ld('cbu2',{}), bank=ld('bank',{}), list=ld('list5',['UZS','USD','CNY','RUB','TRY']), bankT=ld('bankT',0), markup=ld('markup',0), ipak=ld('ipak',null), chan=ld('chan','ilova');
 if(!Array.isArray(list)||list.length!==5)list=['UZS','USD','CNY','RUB','TRY'];
 let active=list[0], expr='0', fresh=false, msg='', bad=false;
 
 const flag=c=>/^[A-Z]{2}/.test(c)&&c[0]!=='X'?String.fromCodePoint(...[...c.slice(0,2)].map(ch=>127397+ch.charCodeAt(0))):'🌐';
 const nm=c=>c==='UZS'?"O'zbek so'mi":((cbu.n&&cbu.n[c])||'');
 const okRate=(c,x)=>x>0&&(!(cbu.r&&cbu.r[c])||Math.abs(x/cbu.r[c]-1)<0.15);
-const hasBank=(c,side)=>src==='ipak'&&c!=='UZS'&&!!bank[c]&&okRate(c,bank[c][side]);
-const rate=(c,side)=>c==='UZS'?1:(hasBank(c,side)?bank[c][side]:(cbu.r&&cbu.r[c]));
+const CH={ilova:'Ilovada',kassa:'Kassada',bankomat:'Bankomatda'};
+const autoR=(c,side)=>{const x=ipak&&ipak.channels&&ipak.channels[chan]&&ipak.channels[chan][c];return x&&x[side]>0?x[side]:0};
+const hasBank=(c,side)=>src==='ipak'&&c!=='UZS'&&(autoR(c,side)>0||(!!bank[c]&&okRate(c,bank[c][side])));
+const rate=(c,side)=>c==='UZS'?1:(src==='ipak'&&autoR(c,side)>0?autoR(c,side):(hasBank(c,side)?bank[c][side]:(cbu.r&&cbu.r[c])));
 const mk=()=>src==='cbu'?1+(markup>0?markup:0)/100:1;
 function conv(v,from,to){
   if(from===to)return v;
@@ -185,8 +192,10 @@ function render(){
     return `<div class="row${on?' on':''}" data-c="${c}"><div class="code"><i>${flag(c)}</i><div class="cn"><b>${c}</b><small>${esc(nm(c))}${tag}</small>${rl?`<small class="rt">${rl}</small>`:''}</div></div>${inner}</div>`;
   }).join('');
   for(const b of document.querySelectorAll('#seg button'))b.classList.toggle('on',b.dataset.s===src);
-  const s=$('#st');s.className=bad?'err':'';
-  s.textContent=(src==='ipak'?"Ipak: "+(bankT?"qo'lda kiritilgan "+fdt(bankT):'kiritilmagan (MB kursi)')+' · ':'')+msg+(src==='cbu'&&markup>0?` · ustama +${markup}%`:'');
+  const ia=ipak&&ipak.channels&&ipak.channels[chan]?Date.parse(ipak.updated):0,stale=!!ia&&Date.now()-ia>30*36e5;
+  const ipT=ia?`Ipak (${CH[chan]||chan}) · ${fdt(ia)}${stale?' ⚠ eskirgan':''}`:(bankT?"Ipak: qo'lda "+fdt(bankT):'Ipak: kiritilmagan (MB kursi)');
+  const s=$('#st');s.className=(bad||(src==='ipak'&&stale))?'err':'';
+  s.textContent=(src==='ipak'?ipT+' · ':'')+msg+(src==='cbu'&&markup>0?` · ustama +${markup}%`:'');
 }
 
 const rowsEl=$('#rows');
@@ -264,6 +273,7 @@ $('#pad').addEventListener('click',e=>{const b=e.target.closest('button');if(b)p
 const stamp=()=>new Date(cbu.t).toLocaleTimeString('uz',{hour:'2-digit',minute:'2-digit'});
 async function load(silent){
   if(!silent){msg='Yangilanmoqda…';bad=false;render()}
+  loadIpak();
   try{
     const r=await fetch('https://cbu.uz/uz/arkhiv-kursov-valyut/json/',{cache:'no-store'});
     if(!r.ok)throw 0;
@@ -281,6 +291,23 @@ async function load(silent){
   }
   render();
 }
+async function loadIpak(){
+  try{
+    const r=await fetch('rates.json',{cache:'no-store'});if(!r.ok)throw 0;
+    const j=await r.json();
+    if(j&&j.channels&&j.updated){ipak=j;sv('ipak',j);if(!j.channels[chan]){chan=Object.keys(j.channels)[0]||'ilova';sv('chan',chan)}}
+  }catch{}
+  render();
+}
+function drawIpak(){
+  const chs=ipak&&ipak.channels?Object.keys(ipak.channels):[];
+  $('#chs').innerHTML=chs.map(k=>`<button data-ch="${k}" class="${k===chan?'on':''}">${CH[k]||k}</button>`).join('');
+  $('#chs').style.display=chs.length>1?'':'none';
+  const cur=(ipak&&ipak.channels&&ipak.channels[chan])||{};
+  $('#ar').innerHTML=Object.keys(cur).length?'<div class="h"><span></span><span>Bank oladi</span><span>Bank sotadi</span></div>'+Object.entries(cur).map(([c,x])=>`<div class="g"><span>${c}</span><b>${fmtRate(x.b)}</b><b>${fmtRate(x.s)}</b></div>`).join(''):'';
+  $('#at').textContent=ipak&&ipak.updated?`Manba: ipakyulibank.uz · ${fdt(Date.parse(ipak.updated))}`:'Avtomatik kurs hali kelmagan.';
+}
+$('#chs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;chan=b.dataset.ch;sv('chan',chan);drawIpak();render()});
 $('#rf').onclick=()=>load();
 $('#seg').onclick=e=>{const b=e.target.closest('button');if(!b)return;src=b.dataset.s;sv('src',src);render()};
 
@@ -337,7 +364,7 @@ $('#mk').addEventListener('input',e=>{
   const x=parseNum(e.target.value);
   markup=x>0&&x<=30?x:0;sv('markup',markup);render();
 });
-$('#cf').onclick=()=>{buildBank();$('#sheet').classList.add('open')};
+$('#cf').onclick=()=>{buildBank();drawIpak();$('#sheet').classList.add('open')};
 $('#ok').onclick=()=>$('#sheet').classList.remove('open');
 for(const s of document.querySelectorAll('.sheet'))s.onclick=e=>{if(e.target===s)s.classList.remove('open')};
 

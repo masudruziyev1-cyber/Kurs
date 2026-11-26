@@ -1,0 +1,32 @@
+{
+ "updated": "2026-11-25T18:40:00+05:00",
+ "source": "https://ipakyulibank.uz/physical/valyuta-ayirboshlash",
+ "channels": {
+  "ilova": {
+   "USD": {
+    "b": 11945,
+    "s": 12045
+   },
+   "EUR": {
+    "b": 12560,
+    "s": 13190
+   },
+   "JPY": {
+    "b": 45,
+    "s": 77
+   },
+   "GBP": {
+    "b": 15020,
+    "s": 15930
+   },
+   "CHF": {
+    "b": 13680,
+    "s": 14560
+   },
+   "RUB": {
+    "b": 80,
+    "s": 148
+   }
+  }
+ }
+}
