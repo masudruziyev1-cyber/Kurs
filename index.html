@@ -192,7 +192,7 @@ function render(){
     return `<div class="row${on?' on':''}" data-c="${c}"><div class="code"><i>${flag(c)}</i><div class="cn"><b>${c}</b><small>${esc(nm(c))}${tag}</small>${rl?`<small class="rt">${rl}</small>`:''}</div></div>${inner}</div>`;
   }).join('');
   for(const b of document.querySelectorAll('#seg button'))b.classList.toggle('on',b.dataset.s===src);
-  const ia=ipak&&ipak.channels&&ipak.channels[chan]?Date.parse(ipak.updated):0,stale=!!ia&&Date.now()-ia>30*36e5;
+  const ia=ipak&&ipak.channels&&ipak.channels[chan]?Date.parse(ipak.updated):0,stale=!!ia&&Date.now()-ia>24*36e5;
   const ipT=ia?`Ipak (${CH[chan]||chan}) · ${fdt(ia)}${stale?' ⚠ eskirgan':''}`:(bankT?"Ipak: qo'lda "+fdt(bankT):'Ipak: kiritilmagan (MB kursi)');
   const s=$('#st');s.className=(bad||(src==='ipak'&&stale))?'err':'';
   s.textContent=(src==='ipak'?ipT+' · ':'')+msg+(src==='cbu'&&markup>0?` · ustama +${markup}%`:'');
